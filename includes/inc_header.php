@@ -1,93 +1,27 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+
+<html lang="en">
     <head>
         <!--
-        Author: Hazel Parys 
-        Date: 7/19/2018
+        Author: Hazel Parys, Logan Allender, Anthony Bychowski
+        Date: 4/10/2024
         -->
         <meta charset="UTF-8">
-        <meta name="author" content="Hazel Parys">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="author" content="Hazel Parys, Logan Allender, Anthony Bychowski">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">	
         <!-- Bootstrap css -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/styles.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+		<link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" rel="stylesheet">
+        <link rel="stylesheet" href="./assess/css/styles.css">
         <title><?php echo (isset($pageTitle)) ? $pageTitle : 'Some Content Site'; ?></title>
-        <!-- code from unit 9 apply -->
     </head>
     <body>
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar_brand" href="index.php"><img src="./img/notepad.svg" width="30"></a>
-            <ul class="nav nav-pills">
-                <!-- add php code to move the active class around -->
-                <li class="nav-item<?php if($pageTitle == 'Home'){ echo " active";}?>">
-                    <a class="nav-link" href="index.php">Home</a>
-                </li>
-                <?php
-                    if(!isset($_SESSION['userID'])) {
-                        if($pageTitle == 'Register'){
-                            $act = 'active';
-                        }
-                        echo '<li class="nav-item';
-                        if($pageTitle == 'Register'){
-                             echo $act.'">';
-                        } else {
-                           echo '">';
-                        }
-                        echo '<a class="nav-link" href="register.php">Register</a>';
-                        echo '</li>';
-                        
-                    }
-                    if(isset($_SESSION['userID'])) {
-                        if($pageTitle == 'To Do List') {
-                            $act = 'active';
-                        }
-                        echo '<li class="nav-item';
-                      if($pageTitle == 'To Do List'){
-                             echo $act.'">';
-                        } else {
-                           echo '">';
-                        }
-                        echo '<a class="nav-link" href="list.php">TO DO LIST</a>';
-                        echo '</li>';
-                    }
-                ?>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <?php 
-                        if (isset($_SESSION['userID'])) {
-                            echo 'Hi '.$_SESSION['fName'];
-                        }
-                        if (!isset($_SESSION['userID'])) {
-                            echo 'Hi User';
-                        }
-                        ?>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        
-                        <a class="dropdown-item" href="
-                            <?php if(isset($_SESSION['userID'])) {echo 'signOut.php';} else {
-                                echo 'signIn.php';
-                            };?>">
-                            <?php if(isset($_SESSION['userID'])) {
-                                echo 'Log Out';
-                            }
-                                else {
-                                    echo 'Log In';
-                                }
-                            ?>
-                        </a> <!-- have it be Sign out when someone is sign in -->
-                            <?php if(isset($_SESSION['userID'])) {
-                                echo '<a class="dropdown-item" href="dashboard.php">Display Profile Info</a>';} ?>
-                            
-                         <!-- show only if user is log in -->
-                    </div>
-                </li>
-            </ul>
-        <!--</div>-->
-    </nav>
+		<div class="header">
+			<img src="./assess/img/logo.png" alt="Company Logo">
+			<nav>
+				<a href="index.php">Home</a>
+				<a href="prediction.php">Prediction</a>
+				<a href="stats.php">Statistics</a>
+				<a href="repo.php">Repositories</a>
+			</nav>
+		</div>
