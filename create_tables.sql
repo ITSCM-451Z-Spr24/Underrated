@@ -49,6 +49,17 @@ drop table Managers;
 drop table ManagersHalf ;
 DROP TABLE Parks;
 drop table People;
+create table People (
+    playerID varchar(255),
+    birthYear int,
+    birthMonth int,
+    birthDay int,
+    birthCity varchar(255),
+    birthCountry varchar(255),
+    birthState varchar(255),
+    nameFirst varchar(255),
+    nameLast varchar(255)
+);
 Drop table Pitching;
 create table Pitching (
     playerID varchar(255),
