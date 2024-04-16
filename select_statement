@@ -8,6 +8,6 @@ SELECT
 FROM 
     People AS p
 JOIN 
-    Batting AS b ON p.playerID = b.playerID
+    Batting AS b ON p.playerID = b.playerID AND b.yearID = 2022
 JOIN 
-    Pitching AS pt ON p.playerID = pt.playerID;
+    Pitching AS pt ON p.playerID = pt.playerID AND pt.yearID = 2022;
