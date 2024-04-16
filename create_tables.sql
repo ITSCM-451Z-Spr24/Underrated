@@ -12,9 +12,9 @@ CREATE TABLE AllStarFull (
 );
 DROP TABLE IF EXISTS Batting;
 CREATE TABLE Batting (
-    playerID VARCHAR(255) PRIMARY KEY COMMENT 'Player ID code',
-    yearID INT PRIMARY KEY COMMENT 'Year',
-    stint INT PRIMARY KEY COMMENT 'Player’s stint (order of appearances within a season)',
+    playerID VARCHAR(255) COMMENT 'Player ID code',
+    yearID INT COMMENT 'Year',
+    stint INT COMMENT 'Player’s stint (order of appearances within a season)',
     teamID VARCHAR(255) COMMENT 'Team; a factor',
     lgID VARCHAR(255) COMMENT 'League; a factor with levels AA AL FL NL PL UA',
     G INT COMMENT 'Games: number of games in which a player played',
