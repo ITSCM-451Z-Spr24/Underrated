@@ -38,9 +38,9 @@ CREATE TABLE Batting (
 
 DROP TABLE IF EXISTS Pitching;
 CREATE TABLE Pitching (
-    playerID VARCHAR(255) PRIMARY KEY  COMMENT 'Player ID code',
-    yearID INT PRIMARY KEY  COMMENT 'Year',
-    stint INT PRIMARY KEY  COMMENT 'Player’s stint (order of appearances within a season)',
+    playerID VARCHAR(255) COMMENT 'Player ID code',
+    yearID INT COMMENT 'Year',
+    stint INT COMMENT 'Player’s stint (order of appearances within a season)',
     teamID VARCHAR(255) COMMENT 'Team; a factor',
     lgID VARCHAR(255) COMMENT 'League; a factor with levels AA AL FL NL PL UA',
     W INT COMMENT 'Wins',
@@ -72,7 +72,7 @@ CREATE TABLE Pitching (
 
 DROP TABLE IF EXISTS People;
 CREATE TABLE People (
-    ID INT AUTO_INCREMENT,
+    ID INT,
     playerID VARCHAR(255) PRIMARY KEY COMMENT 'A unique code assigned to each player. Links the data with records on players in other files.',
     birthYear INT COMMENT 'Year player was born',
     birthMonth INT COMMENT 'Month player was born',
@@ -96,7 +96,7 @@ CREATE TABLE People (
     debut DATE  COMMENT 'Date that player made first major league appearance',
     bbrefID VARCHAR(255) COMMENT 'ID used by Baseball Reference website, https://www.baseball-reference.com/',
     finalGame DATE COMMENT 'Date that player made first major league appearance (blank if still active)',
-    retroID VARCHAR(255) COMMENT 'ID used by retrosheet, https://www.retrosheet.org/',
+    retroID VARCHAR(255) COMMENT 'ID used by retrosheet, https://www.retrosheet.org/'
 
 );
 
