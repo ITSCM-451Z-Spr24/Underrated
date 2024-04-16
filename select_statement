@@ -3,11 +3,18 @@ SELECT
     p.playerID,
     p.nameFirst,
     p.nameLast,
-    ((b.H - b.HR) / (b.AB - b.K - b.HR + b.SF)) + b.OPS + b.SB AS offensiveScore,
-    (pt.W + pt.GS) AS pitchingScore
+    SUM((((b.H - b.HR) / (b.AB - b.R - b.HR + b.SF)) + (b.H + b.X2B + (2 * b.X3B) + (3 * b.HR)) / b.AB) + b.SB) AS offensiveScore,
+    SUM(pt.W + pt.GS) AS pitchingScore
 FROM 
     People AS p
 JOIN 
-    Batting AS b ON p.playerID = b.playerID AND b.yearID = 2022
+    Batting AS b ON p.playerID = b.playerID
 JOIN 
-    Pitching AS pt ON p.playerID = pt.playerID AND pt.yearID = 2022;
+    Pitching AS pt ON p.playerID = pt.playerID
+WHERE 
+    b.yearID = 2022 AND pt.yearID = 2022
+GROUP BY 
+    p.playerID, p.nameFirst, p.nameLast
+ORDER BY 
+    offensiveScore DESC, pitchingScore DESC
+LIMIT 10;
