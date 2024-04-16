@@ -1,3 +1,4 @@
+USE lahman;
 SELECT 
     p.playerID,
     p.nameFirst,
