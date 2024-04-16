@@ -1,0 +1,6 @@
+SELECT 
+    People.playerID,
+    People.nameFirst,
+    People.nameLast,
+    ((Batting.H - Batting.HR) / (Batting.AB - Batting.K - Batting.HR + Batting.SF)) + Batting.OPS + Batting.SB AS offensiveScore,
+    Pitching.W + Pitching.GS AS pitchingScore
