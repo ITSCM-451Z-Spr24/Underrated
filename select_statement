@@ -1,6 +1,12 @@
 SELECT 
-    People.playerID,
-    People.nameFirst,
-    People.nameLast,
-    ((Batting.H - Batting.HR) / (Batting.AB - Batting.K - Batting.HR + Batting.SF)) + Batting.OPS + Batting.SB AS offensiveScore,
-    Pitching.W + Pitching.GS AS pitchingScore
+    p.playerID,
+    p.nameFirst,
+    p.nameLast,
+    ((b.H - b.HR) / (b.AB - b.K - b.HR + b.SF)) + b.OPS + b.SB AS offensiveScore,
+    (pt.W + pt.GS) AS pitchingScore
+FROM 
+    People AS p
+JOIN 
+    Batting AS b ON p.playerID = b.playerID
+JOIN 
+    Pitching AS pt ON p.playerID = pt.playerID;
