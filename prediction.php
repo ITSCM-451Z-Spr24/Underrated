@@ -45,8 +45,10 @@ include './includes/inc_header.php';
             People AS p
         JOIN 
             Batting AS b ON p.playerID = b.playerID
+        LEFT JOIN
+            AllStarFull AS a ON p.playerID = a.playerID AND b.yearID = a.yearID
         WHERE 
-            b.yearID = :year
+            b.yearID = :year AND a.playerID IS NULL
         GROUP BY 
             p.nameFirst, p.nameLast
         ORDER BY 
@@ -63,8 +65,10 @@ include './includes/inc_header.php';
             People AS p
         JOIN 
             Pitching AS pt ON p.playerID = pt.playerID
+        LEFT JOIN
+            AllStarFull AS a ON p.playerID = a.playerID AND pt.yearID = a.yearID
         WHERE 
-            pt.yearID = :year
+            pt.yearID = :year AND a.playerID IS NULL
         GROUP BY 
             p.nameFirst, p.nameLast
         ORDER BY 
