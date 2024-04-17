@@ -60,7 +60,7 @@ include './includes/inc_header.php';
         SELECT 
             p.nameFirst,
             p.nameLast,
-            SUM(pt.W + pt.GS) AS pitchingScore
+            SUM(pt.W + (pt.IPouts / 3) + pt.SV - pt.ERA) AS pitchingScore
         FROM 
             People AS p
         JOIN 
