@@ -1,10 +1,10 @@
 <?php
 session_start();
-
+include './includes/inc_header.php';
 require './includes/pdo_connect.php';
 $pageTitle = "Fantasy Baseball Predictive Model";
 
-include './includes/inc_header.php';
+
 ?>
 <main>
     <div class="wrapper">
