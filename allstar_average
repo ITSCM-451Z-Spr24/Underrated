@@ -1,0 +1,16 @@
+SELECT
+    AVG(allstar_offensiveScore) AS avg_offensiveScore,
+    AVG(allstar_pitchingScore) AS avg_pitchingScore
+FROM (
+    SELECT
+        SUM((((b.H - b.HR) / (b.AB - b.R - b.HR + b.SF)) + (b.H + b.X2B + (2 * b.X3B) + (3 * b.HR)) / b.AB) + b.SB) AS allstar_offensiveScore,
+        SUM(pt.W + (pt.IPouts / 3) + pt.SV - pt.ERA) AS allstar_pitchingScore
+    FROM
+        People as p
+    INNER JOIN
+        Pitching AS pt ON b.player_id = pt.player_id
+    WHERE
+        AllStarFull.PlayerID is not NULL
+    GROUP BY
+        b.player_id
+) AS allstar_scores;
