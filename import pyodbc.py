@@ -7,7 +7,7 @@ def import_table(table):
     cursor_access = conn_access.cursor()
 
     # Connect to the MySQL database
-    conn_mysql = pymysql.connect(host='group5db2.cfmq22o2upla.us-east-2.rds.amazonaws.com', user='migrationuser', password='Baseballgood', db='lahman')
+    conn_mysql = pymysql.connect(host='aws.hazelparys.com', user='Baseballreallysux', password='baseballsux', db='lahman')
     cursor_mysql = conn_mysql.cursor()
 
     try:
@@ -18,9 +18,9 @@ def import_table(table):
 
         # Insert the data into the MySQL database
         for row in filtered_data:
-            # Convert None to NULL
-            row = ['NULL' if item is None else item for item in row]
-            insert_query = f"INSERT INTO {table} VALUES " + str(tuple(row))
+            # Convert Python None to SQL NULL
+            row = ['NULL' if item is None else f"'{item}'" for item in row]
+            insert_query = f"INSERT INTO {table} VALUES ({', '.join(row)})"
             cursor_mysql.execute(insert_query)
             print(f"Inserted data into {table} table")
 
