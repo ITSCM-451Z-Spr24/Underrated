@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 session_start();
 include './includes/inc_header.php';
 require './includes/pdo_connect.php';
-require './includes/sql_queries.php'; // Include the SQL query functions
+require './sql_queries.php'; // Include the SQL query functions
 $pageTitle = "Fantasy Baseball Predictive Model";
 
 
