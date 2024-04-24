@@ -1,10 +1,15 @@
 <?php
-session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
+session_start();
+include './includes/inc_header.php';
 require './includes/pdo_connect.php';
+require './includes/sql_queries.php'; // Include the SQL query functions
 $pageTitle = "Fantasy Baseball Predictive Model";
 
-include './includes/inc_header.php';
+
 ?>
 <main>
     <div class="wrapper">
@@ -27,61 +32,18 @@ include './includes/inc_header.php';
             <input type="number" name="limit" min="1" max="100" placeholder="Limit" value="10">
             <input type="submit" value="Submit">
         </form>
-    
-    
     <?php
     // Check if a year is selected
     if(isset($_GET['year'])) {
         $selectedYear = $_GET['year'];
         $limit = isset($_GET['limit']) ? min(max(1, $_GET['limit']), 100) : 10; // Limit the value between 1 and 100
-        
         // SQL query to fetch offensive scores for the selected year
-        $offensiveSql = "
-        SELECT 
-            p.nameFirst,
-            p.nameLast,
-            SUM((((b.H - b.HR) / (b.AB - b.R - b.HR + b.SF)) + (b.H + b.X2B + (2 * b.X3B) + (3 * b.HR)) / b.AB) + b.SB) AS offensiveScore
-        FROM 
-            People AS p
-        JOIN 
-            Batting AS b ON p.playerID = b.playerID
-        LEFT JOIN
-            AllStarFull AS a ON p.playerID = a.playerID AND b.yearID = a.yearID
-        WHERE 
-            b.yearID = :year AND a.playerID IS NULL
-        GROUP BY 
-            p.nameFirst, p.nameLast
-        ORDER BY 
-            offensiveScore DESC
-        LIMIT :limit";
-
-        // SQL query to fetch pitching scores for the selected year
-        $pitchingSql = "
-        SELECT 
-            p.nameFirst,
-            p.nameLast,
-            SUM(pt.W + (pt.IPouts / 3) + pt.SV - pt.ERA) AS pitchingScore
-        FROM 
-            People AS p
-        JOIN 
-            Pitching AS pt ON p.playerID = pt.playerID
-        LEFT JOIN
-            AllStarFull AS a ON p.playerID = a.playerID AND pt.yearID = a.yearID
-        WHERE 
-            pt.yearID = :year AND a.playerID IS NULL
-        GROUP BY 
-            p.nameFirst, p.nameLast
-        ORDER BY 
-            pitchingScore DESC
-        LIMIT :limit";
-
-        // Prepare and execute the SQL queries using your PDO connection
-        $offensiveStmt = $db->prepare($offensiveSql);
+        $offensiveStmt = $db->prepare(getOffensiveSql());
         $offensiveStmt->bindParam(':year', $selectedYear, PDO::PARAM_INT);
         $offensiveStmt->bindParam(':limit', $limit, PDO::PARAM_INT);
         $offensiveStmt->execute();
 
-        $pitchingStmt = $db->prepare($pitchingSql);
+        $pitchingStmt = $db->prepare(getPitchingSql());
         $pitchingStmt->bindParam(':year', $selectedYear, PDO::PARAM_INT);
         $pitchingStmt->bindParam(':limit', $limit, PDO::PARAM_INT);
         $pitchingStmt->execute();
@@ -134,4 +96,6 @@ include './includes/inc_header.php';
     }
 </style>
 
-<?php include './includes/inc_footer.php'; ?>
+<?php
+include './includes/inc_footer.php';
+?>
