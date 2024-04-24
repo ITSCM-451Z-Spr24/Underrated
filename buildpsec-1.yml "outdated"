@@ -1,0 +1,39 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+    commands:
+      # Install dependencies
+      - echo Installing source NPM dependencies...
+      - npm install
+
+  pre_build:
+    commands:
+      # Commands to run before build
+      - echo Running pre-build steps...
+      - npm run lint
+
+  build:
+    commands:
+      # Actual build commands
+      - echo Build started on `date`
+      - npm run build
+
+  post_build:
+    commands:
+      # Commands to run after build
+      - echo Build completed on `date`
+      - echo Running tests...
+      - npm test
+
+artifacts:
+  # Files to package and store
+  files:
+    - '**/*'
+  base-directory: 'build/'  # Change according to your build output directory
+
+cache:
+  paths:
+    - 'node_modules/**/*'
