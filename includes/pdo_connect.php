@@ -1,7 +1,9 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-
-
+// Include the database connection file
 class MyPDO extends PDO
 {
     public function __construct($file = 'my_setting.ini')
