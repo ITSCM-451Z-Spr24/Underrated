@@ -17,8 +17,7 @@ $pageTitle = "Fantasy Baseball Predictive Model";
             <select name="year">
                 <?php
                 // SQL query to fetch distinct years
-                $yearsSql = "SELECT DISTINCT yearID FROM Batting ORDER BY yearID DESC";
-                $stmt = $db->prepare($yearsSql);
+                $stmt = $db->prepare(getYearsSql());
                 $stmt->execute();
                 $years = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
@@ -47,12 +46,25 @@ $pageTitle = "Fantasy Baseball Predictive Model";
         $pitchingStmt->bindParam(':limit', $limit, PDO::PARAM_INT);
         $pitchingStmt->execute();
 
+        $AllStarPitchingStmt = $db->prepare(getAllStarPitchingSql());
+        $AllStarPitchingStmt->bindParam(':year', $selectedYear, PDO::PARAM_INT);
+        $AllStarPitchingStmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $AllStarPitchingStmt->execute();
+
+        $AllStarOffensiveStmt = $db->prepare(getAllStarOffensiveSql());
+        $AllStarOffensiveStmt->bindParam(':year', $selectedYear, PDO::PARAM_INT);
+        $AllStarOffensiveStmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $AllStarOffensiveStmt->execute();
+
         // Fetch the results for offensive scores
         $offensiveResults = $offensiveStmt->fetchAll(PDO::FETCH_ASSOC);
+        $AllStarOffensiveResults = $AllStarOffensiveStmt->fetchAll(PDO::FETCH_ASSOC);
         // Display dynamic header
         echo "<h2>Prediction for $selectedYear limited to $limit results</h2>";
         // Generate HTML for the offensive scores table
-        $offensiveHtml = '<div class="table-container"><h2>Offensive Scores</h2><table class="table table-bordered">';
+        $offensiveHtml = '<div class="table-container"><h2>Offensive Scores</h2>'
+        $offensiveHtml .= "<h3>AllStar Offensive Score: $AllStarOffensiveResults</h3>";
+        $offensiveHtml .= '<table class="table table-bordered">';
         $offensiveHtml .= '<thead><tr><th>First Name</th><th>Last Name</th><th>Offensive Score</th></tr></thead><tbody>';
         foreach ($offensiveResults as $row) {
             $offensiveHtml .= '<tr>';
@@ -68,10 +80,14 @@ $pageTitle = "Fantasy Baseball Predictive Model";
 
         // Fetch the results for pitching scores
         $pitchingResults = $pitchingStmt->fetchAll(PDO::FETCH_ASSOC);
+        $allStarPitchingResults = $AllStarPitchingStmt->fetchAll(PDO::FETCH_ASSOC);
 
         // Generate HTML for the pitching scores table
-        $pitchingHtml = '<div class="table-container"><h2>Pitching Scores</h2><table class="table table-bordered">';
+        $pitchingHtml = '<div class="table-container"><h2>Pitching Scores</h2>'
+        $pitchingHtml .= "<h3>AllStar Pitching Score: $allStarPitchingResults</h3>";
+        $pitchingHtml .= '<table class="table table-bordered">';
         $pitchingHtml .= '<thead><tr><th>First Name</th><th>Last Name</th><th>Pitching Score</th></tr></thead><tbody>';
+
         foreach ($pitchingResults as $row) {
             $pitchingHtml .= '<tr>';
             $pitchingHtml .= '<td>' . $row['nameFirst'] . '</td>';
