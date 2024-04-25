@@ -104,13 +104,6 @@ $pageTitle = "Fantasy Baseball Predictive Model";
 	</div>
 </main>
 
-<style>
-    .table-container {
-        float: left;
-        margin-right: 20px; /* Adjust as needed */
-    }
-</style>
-
 <?php
 include './includes/inc_footer.php';
 ?>
