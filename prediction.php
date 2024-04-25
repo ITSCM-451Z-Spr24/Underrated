@@ -8,7 +8,6 @@ require './includes/pdo_connect.php';
 require './sql_queries.php'; // Include the SQL query functions
 $pageTitle = "Fantasy Baseball Predictive Model";
 
-
 ?>
 <main>
     <div class="wrapper">
@@ -62,7 +61,7 @@ $pageTitle = "Fantasy Baseball Predictive Model";
         // Display dynamic header
         echo "<h2>Prediction for $selectedYear limited to $limit results</h2>";
         // Generate HTML for the offensive scores table
-        $offensiveHtml = '<div class="table-container"><h2>Offensive Scores</h2>'
+        $offensiveHtml = '<div class="table-container"><h2>Offensive Scores</h2>';
         $offensiveHtml .= "<h3>AllStar Offensive Score: $AllStarOffensiveResults</h3>";
         $offensiveHtml .= '<table class="table table-bordered">';
         $offensiveHtml .= '<thead><tr><th>First Name</th><th>Last Name</th><th>Offensive Score</th></tr></thead><tbody>';
@@ -83,7 +82,7 @@ $pageTitle = "Fantasy Baseball Predictive Model";
         $allStarPitchingResults = $AllStarPitchingStmt->fetchAll(PDO::FETCH_ASSOC);
 
         // Generate HTML for the pitching scores table
-        $pitchingHtml = '<div class="table-container"><h2>Pitching Scores</h2>'
+        $pitchingHtml = '<div class="table-container"><h2>Pitching Scores</h2>';
         $pitchingHtml .= "<h3>AllStar Pitching Score: $allStarPitchingResults</h3>";
         $pitchingHtml .= '<table class="table table-bordered">';
         $pitchingHtml .= '<thead><tr><th>First Name</th><th>Last Name</th><th>Pitching Score</th></tr></thead><tbody>';

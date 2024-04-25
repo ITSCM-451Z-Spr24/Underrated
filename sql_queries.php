@@ -6,7 +6,6 @@ function getYearsSql()
     return "SELECT DISTINCT yearID FROM AllStarFull ORDER BY yearID DESC";
 }
 
-
 function getOffensiveSql()
 {
     return "
@@ -52,7 +51,7 @@ function getPitchingSql()
 }
 
 
-getAllStarPitchingSql()
+function getAllStarPitchingSql()
 {
     return "
         SELECT 
@@ -73,7 +72,7 @@ getAllStarPitchingSql()
         ) AS allstar_scores";
 }
 
-getAllStarOffensiveSql()
+function getAllStarOffensiveSql()
 {
     return "
         SELECT 
