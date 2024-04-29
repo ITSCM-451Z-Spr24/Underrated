@@ -18,20 +18,7 @@ $pageTitle = "Fantasy Baseball Predictive Model";
 
     <p>Link to current github repo</p>
       <a href="https://github.com/ITSCM-451Z-Spr24/Underrated">repo page</a>
-      <table width="100%">
-				<tr><td style="width: 90%;"><h1></h1></td>
-					<td style="position: absolute; padding: 0;">
-					</td>
-				</tr>
-				<tr>
-					<td width="90%">
-						<p>DO NOT CLICK THE BUTTON</p>
-					</td>
-					<td>
-						<button style="width: 100%;" onclick="bS()"><h4>Try Me!</h4></button>
-					</td>
-				</tr>
-			</table>
+    
       
 
   </section>
