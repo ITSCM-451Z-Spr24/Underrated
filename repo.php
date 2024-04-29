@@ -13,9 +13,10 @@ $pageTitle = "Fantasy Baseball Predictive Model";
 <main>
 <div class="wrapper">
   <section class="hero">
-    <h1>Find Hidden Gems: Fantasy Baseball All-Star Misfits</h1>
-    <p>This website uses a predictive model to identify players with All-Star potential who were overlooked during the draft. 
-      Leverage our insights to build a winning fantasy team!</p>
+    <h1>current repos</h1>
+    <p>Link to current github repo</p>
+      <a href="https://github.com/ITSCM-451Z-Spr24/Underrated">repo page</a>
+
   </section>
   </div>
 </main>
