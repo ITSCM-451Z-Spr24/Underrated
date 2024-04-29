@@ -72,7 +72,6 @@ function getAllStarPitchingSql()
 			LIMIT :limit
         ) AS allstar_scores";
 }
-
 function getAllStarOffensiveSql()
 {
     return "
@@ -88,11 +87,13 @@ function getAllStarOffensiveSql()
             JOIN 
                 AllStarFull AS a ON p.playerID = a.playerID AND b.yearID = a.yearID
             WHERE 
-                pt.yearID = :year AND a.playerID IS NOT NULL
+                b.yearID = :year AND a.playerID IS NOT NULL
             GROUP BY 
                 p.playerID
-			ORDER BY allstar_offensiveScore
+            ORDER BY allstar_offensiveScore
+            LIMIT :limit
         ) AS allstar_scores";
 }
+
 
 ?>
