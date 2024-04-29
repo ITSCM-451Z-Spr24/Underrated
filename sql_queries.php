@@ -72,7 +72,6 @@ function getAllStarPitchingSql()
 			LIMIT :limit
         ) AS allstar_scores";
 }
-
 function getAllStarOffensiveSql()
 {
     return "
