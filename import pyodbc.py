@@ -1,6 +1,13 @@
 import pyodbc
 import pymysql
 
+def escape_quotes(value):
+    # If the value is a string, escape single quotes
+    if isinstance(value, str):
+        return value.replace("'", "''")
+    else:
+        return value
+
 def import_table(table):
     # Connect to the Microsoft Access database
     conn_access = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=./lahman_1871-2022.mdb')
@@ -15,14 +22,21 @@ def import_table(table):
         access_query = f"SELECT * FROM {table}"
         cursor_access.execute(access_query)
         filtered_data = cursor_access.fetchall()
-
+        counter = 0
         # Insert the data into the MySQL database
         for row in filtered_data:
+            # Escape single quotes in each value
+            row = [escape_quotes(item) for item in row]
             # Convert Python None to SQL NULL
             row = ['NULL' if item is None else f"'{item}'" for item in row]
             insert_query = f"INSERT INTO {table} VALUES ({', '.join(row)})"
-            cursor_mysql.execute(insert_query)
-            print(f"Inserted data into {table} table")
+            try:
+                cursor_mysql.execute(insert_query)
+                counter += 1
+                print(f"{counter}. Inserted {insert_query} into {table} table")
+            except Exception as e:
+                print(f"Error inserting row: {row}")
+                raise e
 
         # Commit the changes
         conn_mysql.commit()
@@ -40,7 +54,7 @@ def import_table(table):
 
 def main():
     # List of table names
-    tables = ['AllStarFull', 'Batting', 'Pitching', 'People', 'Appearances']
+    tables = ['People']
     for table in tables:
         import_table(table)
 
