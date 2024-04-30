@@ -13,8 +13,9 @@ $pageTitle = "Fantasy Baseball Predictive Model";
 <main>
 <div class="wrapper">
   <section class="hero">
-    <h1>The Formulas and Statistics used for our predictions!</h1>
-    <p>Offensive score: <br> BABIP (Batting average on balls in play)-  </p>
+    <h1>Find Hidden Gems: Fantasy Baseball All-Star Misfits</h1>
+    <p>This website uses a predictive model to identify players with All-Star potential who were overlooked during the draft. 
+      Leverage our insights to build a winning fantasy team!</p>
   </section>
   </div>
 </main>

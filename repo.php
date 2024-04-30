@@ -13,8 +13,14 @@ $pageTitle = "Fantasy Baseball Predictive Model";
 <main>
 <div class="wrapper">
   <section class="hero">
-    <h1>The Formulas and Statistics used for our predictions!</h1>
-    <p>Offensive score: <br> BABIP (Batting average on balls in play)-  </p>
+    <h1>current repos</h1>
+
+
+    <p>Link to current github repo</p>
+      <a href="https://github.com/ITSCM-451Z-Spr24/Underrated">repo page</a>
+    
+      
+
   </section>
   </div>
 </main>
