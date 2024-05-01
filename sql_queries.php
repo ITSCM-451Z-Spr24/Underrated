@@ -73,7 +73,6 @@ function getAllStarPitchingSql()
         ) AS allstar_scores";
 }
 
-}
 function getAllStarOffensiveSql()
 {
     return "
