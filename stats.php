@@ -19,7 +19,7 @@ $pageTitle = "Fantasy Baseball Predictive Model";
     Stolen Bases-<br>Stolen bases are an underrated statistic, especially in fantasy baseball since they're worth 2 points<br>
     Pitching Score:<br>IP (innings pitched)-<br>Pitchers give you a point for each inning pitched, so the more they pitch the more points you'll earn in fantasy<br>
     ERA (earned runs average)-<br>This statistic determines how many points the pitcher gives up to the opposing team. The lower this number the better the pitcher is doing.
-    W/L (wins / losses)-<br>The most important team statistic, however pitchers also give you 4 points in fantasy for each win which is significant
+    W/L (wins / losses)-<br><br>The most important team statistic, however pitchers also give you 4 points in fantasy for each win which is significant
     Fantasy sports can use many different methods of scoring, so we’re going to use some of the more common methods.
     <br>---Offense---<br>Singles (1 point)<br>Doubles (2 points)<br>Triples (3 points)<br>Home Runs (4 points)<br>Runs (1 point)<br>Runs Batted In (1 point)<br>Walks (1 point)
     <br>Hit by Pitch (1 point)<br>Stolen Bases (2 points)<br>Caught stealing (-1 point)<br>---Pitching---<br>Wins (4 points)<br>Saves (2 points)<br>Innings Pitched (1 point)<br>Earned runs allowed (-1 point)
