@@ -18,9 +18,9 @@ function getOffensiveSql()
         JOIN 
             Batting AS b ON p.playerID = b.playerID
         LEFT JOIN
-            AllStarFull AS a ON p.playerID = a.playerID AND b.yearID = a.yearID
+            AllStarFull AS a ON p.playerID = a.playerID
         WHERE 
-            b.yearID = :year AND a.playerID IS NULL
+            b.yearID = :year AND a.playerID IS NULL AND p.playerID NOT IN (SELECT playerID FROM AllStarFull)
         GROUP BY 
             p.nameFirst, p.nameLast
         ORDER BY 
@@ -40,9 +40,9 @@ function getPitchingSql()
         JOIN 
             Pitching AS pt ON p.playerID = pt.playerID
         LEFT JOIN
-            AllStarFull AS a ON p.playerID = a.playerID AND pt.yearID = a.yearID
+            AllStarFull AS a ON p.playerID = a.playerID
         WHERE 
-            pt.yearID = :year AND a.playerID IS NULL
+            pt.yearID = :year AND a.playerID IS NULL AND p.playerID NOT IN (SELECT playerID FROM AllStarFull)
         GROUP BY 
             p.nameFirst, p.nameLast
         ORDER BY 
