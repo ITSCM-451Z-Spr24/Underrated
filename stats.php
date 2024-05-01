@@ -15,7 +15,7 @@ $pageTitle = "Fantasy Baseball Predictive Model";
   <section class="hero">
     <h1>The Formulas and Statistics used for our predictions!</h1>
     <p>---Formulas used---<br>-Offensive Score Formula-<br>((((Hits - Homeruns) / (At bats - runs - homeruns + Sacrifice Flys)) + (Hits + doubles + (2 * triples) + (3 * homeruns)) / At bats) + stolen bases)<br>
-    -Pitching score formula-<br>(Wins + (Innings pitched outs / 3) + saves - Earned runs average)<br>
+    -Pitching score formula-<br>(Wins + (Innings pitched outs / 3) + saves - Earned runs average)<br><br>
     Offensive score stats: <br> BABIP (Batting average on balls in play)-<br>This statistic combines a lot of important batting stats (hits, at bats, etc) to get a good gauge on what's considered a “good batting season”.<br>
     OPS (on base plus slugging)-<br>This statistic helps determine quality of hits and whether players are getting more bases per hit.<br>
     Stolen Bases-<br>Stolen bases are an underrated statistic, especially in fantasy baseball since they're worth 2 points.<br>
