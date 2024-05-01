@@ -12,7 +12,7 @@ function getOffensiveSql()
         SELECT 
             p.nameFirst,
             p.nameLast,
-            SUM((((b.H - b.HR) / (b.AB - b.R - b.HR + b.SF)) + (b.H + b.X2B + (2 * b.X3B) + (3 * b.HR)) / b.AB) + b.SB) AS offensiveScore
+            ROUND(SUM((((b.H - b.HR) / (b.AB - b.R - b.HR + b.SF)) + (b.H + b.X2B + (2 * b.X3B) + (3 * b.HR)) / b.AB) + b.SB), 2) AS offensiveScore
         FROM 
             People AS p
         JOIN 
@@ -34,7 +34,7 @@ function getPitchingSql()
         SELECT 
             p.nameFirst,
             p.nameLast,
-            SUM(pt.W + (pt.IPouts / 3) + pt.SV - pt.ERA) AS pitchingScore
+            ROUND(SUM(pt.W + (pt.IPouts / 3) + pt.SV - pt.ERA),2) AS pitchingScore
         FROM 
             People AS p
         JOIN 
