@@ -95,7 +95,7 @@ CREATE TABLE People (
     throws VARCHAR(1) COMMENT 'Player’s throwing hand (left(L) or right(R))',
     debut DATE  COMMENT 'Date that player made first major league appearance',
     bbrefID VARCHAR(255) COMMENT 'ID used by Baseball Reference website, https://www.baseball-reference.com/',
-    finalGame DATE COMMENT 'Date that player made first major league appearance (blank if still active)',
+    finalGame DATE COMMENT 'Date that player made last major league appearance (blank if still active)',
     retroID VARCHAR(255) COMMENT 'ID used by retrosheet, https://www.retrosheet.org/'
 
 );
