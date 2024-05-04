@@ -5,7 +5,6 @@ function getYearsSql()
 {
     return "SELECT DISTINCT yearID FROM AllStarFull ORDER BY yearID DESC";
 }
-
 function getOffensiveSql()
 {
     return "
@@ -20,7 +19,10 @@ function getOffensiveSql()
         LEFT JOIN
             AllStarFull AS a ON p.playerID = a.playerID
         WHERE 
-            b.yearID = :year AND a.playerID IS NULL AND p.playerID NOT IN (SELECT playerID FROM AllStarFull)
+            b.yearID = :year 
+            AND a.playerID IS NULL 
+            AND p.playerID NOT IN (SELECT playerID FROM AllStarFull)
+            AND offensiveScore > 0 -- Exclude negative scores or blanks
         GROUP BY 
             p.nameFirst, p.nameLast
         ORDER BY 
@@ -42,13 +44,17 @@ function getPitchingSql()
         LEFT JOIN
             AllStarFull AS a ON p.playerID = a.playerID
         WHERE 
-            pt.yearID = :year AND a.playerID IS NULL AND p.playerID NOT IN (SELECT playerID FROM AllStarFull)
+            pt.yearID = :year 
+            AND a.playerID IS NULL 
+            AND p.playerID NOT IN (SELECT playerID FROM AllStarFull)
+            AND pitchingScore > 0 -- Exclude negative scores or blanks
         GROUP BY 
             p.nameFirst, p.nameLast
         ORDER BY 
             pitchingScore DESC
         LIMIT :limit";
 }
+
 function getAllStarOffensiveSql()
 {
     return "
@@ -64,6 +70,7 @@ function getAllStarOffensiveSql()
             AllStarFull AS a ON p.playerID = a.playerID AND b.yearID = a.yearID
         WHERE 
             b.yearID = :year
+            AND allstar_offensiveScore > 0 -- Exclude negative scores or blanks
         GROUP BY 
             p.nameFirst, p.nameLast
         ORDER BY 
@@ -86,6 +93,7 @@ function getAllStarPitchingSql()
             AllStarFull AS a ON p.playerID = a.playerID AND pt.yearID = a.yearID
         WHERE 
             pt.yearID = :year
+            AND allstar_pitchingScore > 0 -- Exclude negative scores or blanks
         GROUP BY 
             p.nameFirst, p.nameLast
         ORDER BY 
