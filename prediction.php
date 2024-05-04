@@ -74,9 +74,11 @@ $pageTitle = "Fantasy Baseball Predictive Model";
         // Display dynamic header
         echo "<h2>Prediction for $selectedYear limited to $limit results</h2>";
         
+        // Generate HTML for the non-All-Star players table
+        echo '<div class="table-container"><h2>Non-All-Star Players</h2>';
+        
         // Generate HTML for the non-All-Star offensive scores table
-        $offensiveHtml = '<div class="table-container"><h2>Offensive Scores for Non-All-Star Players</h2>';
-        $offensiveHtml .= '<table class="table table-bordered">';
+        $offensiveHtml = '<table class="table table-bordered">';
         $offensiveHtml .= '<thead><tr><th>First Name</th><th>Last Name</th><th>Offensive Score</th></tr></thead><tbody>';
         foreach ($offensiveResults as $row) {
             $offensiveHtml .= '<tr>';
@@ -85,14 +87,11 @@ $pageTitle = "Fantasy Baseball Predictive Model";
             $offensiveHtml .= '<td>' . $row['offensiveScore'] . '</td>';
             $offensiveHtml .= '</tr>';
         }
-        $offensiveHtml .= '</tbody></table></div>';
-
-        // Output the non-All-Star offensive scores HTML
+        $offensiveHtml .= '</tbody></table>';
         echo $offensiveHtml;
 
         // Generate HTML for the non-All-Star pitching scores table
-        $pitchingHtml = '<div class="table-container"><h2>Pitching Scores for Non-All-Star Players</h2>';
-        $pitchingHtml .= '<table class="table table-bordered">';
+        $pitchingHtml = '<table class="table table-bordered">';
         $pitchingHtml .= '<thead><tr><th>First Name</th><th>Last Name</th><th>Pitching Score</th></tr></thead><tbody>';
         foreach ($pitchingResults as $row) {
             $pitchingHtml .= '<tr>';
@@ -106,9 +105,11 @@ $pageTitle = "Fantasy Baseball Predictive Model";
         // Output the non-All-Star pitching scores HTML
         echo $pitchingHtml;
 
+        // Generate HTML for the All-Star players table
+        echo '<div class="table-container"><h2>All-Star Players</h2>';
+        
         // Generate HTML for the All-Star offensive scores table
-        $allStarOffensiveHtml = '<div class="table-container"><h2>Offensive Scores for All-Star Players</h2>';
-        $allStarOffensiveHtml .= '<table class="table table-bordered">';
+        $allStarOffensiveHtml = '<table class="table table-bordered">';
         $allStarOffensiveHtml .= '<thead><tr><th>First Name</th><th>Last Name</th><th>Offensive Score</th></tr></thead><tbody>';
         foreach ($allStarOffensiveResults as $row) {
             $allStarOffensiveHtml .= '<tr>';
@@ -117,14 +118,11 @@ $pageTitle = "Fantasy Baseball Predictive Model";
             $allStarOffensiveHtml .= '<td>' . $row['allstar_offensiveScore'] . '</td>';
             $allStarOffensiveHtml .= '</tr>';
         }
-        $allStarOffensiveHtml .= '</tbody></table></div>';
-
-        // Output the All-Star offensive scores HTML
+        $allStarOffensiveHtml .= '</tbody></table>';
         echo $allStarOffensiveHtml;
 
         // Generate HTML for the All-Star pitching scores table
-        $allStarPitchingHtml = '<div class="table-container"><h2>Pitching Scores for All-Star Players</h2>';
-        $allStarPitchingHtml .= '<table class="table table-bordered">';
+        $allStarPitchingHtml = '<table class="table table-bordered">';
         $allStarPitchingHtml .= '<thead><tr><th>First Name</th><th>Last Name</th><th>Pitching Score</th></tr></thead><tbody>';
         foreach ($allStarPitchingResults as $row) {
             $allStarPitchingHtml .= '<tr>';
