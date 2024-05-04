@@ -114,7 +114,7 @@ $pageTitle = "Fantasy Baseball Predictive Model";
             $allStarOffensiveHtml .= '<tr>';
             $allStarOffensiveHtml .= '<td>' . $row['nameFirst'] . '</td>';
             $allStarOffensiveHtml .= '<td>' . $row['nameLast'] . '</td>';
-            $allStarOffensiveHtml .= '<td>' . $row['offensiveScore'] . '</td>';
+            $allStarOffensiveHtml .= '<td>' . $row['allstar_offensiveScore'] . '</td>';
             $allStarOffensiveHtml .= '</tr>';
         }
         $allStarOffensiveHtml .= '</tbody></table></div>';
@@ -130,7 +130,7 @@ $pageTitle = "Fantasy Baseball Predictive Model";
             $allStarPitchingHtml .= '<tr>';
             $allStarPitchingHtml .= '<td>' . $row['nameFirst'] . '</td>';
             $allStarPitchingHtml .= '<td>' . $row['nameLast'] . '</td>';
-            $allStarPitchingHtml .= '<td>' . $row['pitchingScore'] . '</td>';
+            $allStarPitchingHtml .= '<td>' . $row['allstar_pitchingScore'] . '</td>';
             $allStarPitchingHtml .= '</tr>';
         }
         $allStarPitchingHtml .= '</tbody></table></div>';
