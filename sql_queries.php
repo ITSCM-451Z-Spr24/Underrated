@@ -87,7 +87,7 @@ function getAllStarOffensiveSql()
             JOIN 
                 AllStarFull AS a ON p.playerID = a.playerID AND b.yearID = a.yearID
             WHERE 
-                b.yearID = :year AND (a.playerID IS NOT NULL OR b.yearID >= :year - 5)
+                b.yearID = :year AND a.playerID IS NOT NULL
             GROUP BY 
                 p.playerID
             ORDER BY allstar_offensiveScore
