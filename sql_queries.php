@@ -50,30 +50,27 @@ function getPitchingSql()
         LIMIT :limit";
 }
 
+// SQL query to fetch the overall average pitching score for All-Star players for a specific year
 function getAllStarPitchingSql()
 {
     return "
         SELECT 
-            AVG(allstar_pitchingScore) AS avg_pitchingScore
+            AVG(allstar_pitchingScore) AS overall_avg_pitchingScore
         FROM (
             SELECT 
-                SUM(pt.W + (pt.IPouts / 3) + pt.SV - pt.ERA) AS allstar_pitchingScore
+                AVG(b.W + (b.IPouts / 3) + b.SV - b.ERA) AS allstar_pitchingScore
             FROM 
                 People AS p
             JOIN 
-                Pitching AS pt ON p.playerID = pt.playerID
-            JOIN 
-                AllStarFull AS a ON p.playerID = a.playerID AND pt.yearID = a.yearID
+                AllStarFull AS a ON p.playerID = a.playerID AND a.yearID = :year
+            LEFT JOIN
+                Pitching AS b ON p.playerID = b.playerID
             WHERE 
-                pt.yearID = :year AND (a.playerID IS NOT NULL OR pt.yearID >= :year - 5)
+                a.yearID = :year
             GROUP BY 
                 p.playerID
-            ORDER BY allstar_pitchingScore
-            LIMIT :limit
         ) AS allstar_scores";
 }
-
-
 
 function getAllStarOffensiveSql()
 {
