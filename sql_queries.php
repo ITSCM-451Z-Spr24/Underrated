@@ -5,6 +5,7 @@ function getYearsSql()
 {
     return "SELECT DISTINCT yearID FROM AllStarFull ORDER BY yearID DESC";
 }
+
 function getOffensiveSql()
 {
     return "
@@ -19,12 +20,11 @@ function getOffensiveSql()
         LEFT JOIN
             AllStarFull AS a ON p.playerID = a.playerID
         WHERE 
-            b.yearID = :year 
-            AND a.playerID IS NULL 
-            AND p.playerID NOT IN (SELECT playerID FROM AllStarFull)
-            AND offensiveScore > 0 -- Exclude negative scores or blanks
+            b.yearID = :year AND a.playerID IS NULL AND p.playerID NOT IN (SELECT playerID FROM AllStarFull) 
         GROUP BY 
             p.nameFirst, p.nameLast
+        HAVING
+            offensiveScore > 0 OR offensiveScore IS NOT NULL
         ORDER BY 
             offensiveScore DESC
         LIMIT :limit";
@@ -44,17 +44,15 @@ function getPitchingSql()
         LEFT JOIN
             AllStarFull AS a ON p.playerID = a.playerID
         WHERE 
-            pt.yearID = :year 
-            AND a.playerID IS NULL 
-            AND p.playerID NOT IN (SELECT playerID FROM AllStarFull)
-            AND pitchingScore > 0 -- Exclude negative scores or blanks
+            pt.yearID = :year AND a.playerID IS NULL AND p.playerID NOT IN (SELECT playerID FROM AllStarFull)
         GROUP BY 
             p.nameFirst, p.nameLast
+        HAVING
+            pitchingScore > 0 OR pitchingScore IS NOT NULL
         ORDER BY 
             pitchingScore DESC
         LIMIT :limit";
 }
-
 function getAllStarOffensiveSql()
 {
     return "
@@ -70,9 +68,10 @@ function getAllStarOffensiveSql()
             AllStarFull AS a ON p.playerID = a.playerID AND b.yearID = a.yearID
         WHERE 
             b.yearID = :year
-            AND allstar_offensiveScore > 0 -- Exclude negative scores or blanks
         GROUP BY 
             p.nameFirst, p.nameLast
+        HAVING
+            allstar_offensiveScore > 0 OR allstar_offensiveScore IS NOT NULL
         ORDER BY 
             allstar_offensiveScore DESC
         LIMIT :limit";
@@ -93,9 +92,10 @@ function getAllStarPitchingSql()
             AllStarFull AS a ON p.playerID = a.playerID AND pt.yearID = a.yearID
         WHERE 
             pt.yearID = :year
-            AND allstar_pitchingScore > 0 -- Exclude negative scores or blanks
         GROUP BY 
             p.nameFirst, p.nameLast
+        HAVING
+            allstar_pitchingScore > 0 OR allstar_pitchingScore IS NOT NULL
         ORDER BY 
             allstar_pitchingScore DESC
         LIMIT :limit";
