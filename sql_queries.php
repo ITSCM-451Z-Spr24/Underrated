@@ -69,7 +69,7 @@ function getAllStarPitchingSql()
                 a.yearID = :year
             GROUP BY 
                 p.playerID
-        ) AS allstar_scores";
+        ) AS avg_pitchingScore";
 }
 
 function getAllStarOffensiveSql()
