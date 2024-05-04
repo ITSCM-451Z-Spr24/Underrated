@@ -24,7 +24,7 @@ function getOffensiveSql()
         GROUP BY 
             p.nameFirst, p.nameLast
         HAVING
-            offensiveScore > 0 OR offensiveScore IS NOT NULL
+            offensiveScore > 0 AND offensiveScore IS NOT NULL
         ORDER BY 
             offensiveScore DESC
         LIMIT :limit";
@@ -48,7 +48,7 @@ function getPitchingSql()
         GROUP BY 
             p.nameFirst, p.nameLast
         HAVING
-            pitchingScore > 0 OR pitchingScore IS NOT NULL
+            pitchingScore > 0 AND pitchingScore IS NOT NULL
         ORDER BY 
             pitchingScore DESC
         LIMIT :limit";
@@ -71,7 +71,7 @@ function getAllStarOffensiveSql()
         GROUP BY 
             p.nameFirst, p.nameLast
         HAVING
-            allstar_offensiveScore > 0 OR allstar_offensiveScore IS NOT NULL
+            allstar_offensiveScore > 0 AND allstar_offensiveScore IS NOT NULL
         ORDER BY 
             allstar_offensiveScore DESC
         LIMIT :limit";
@@ -95,7 +95,7 @@ function getAllStarPitchingSql()
         GROUP BY 
             p.nameFirst, p.nameLast
         HAVING
-            allstar_pitchingScore > 0 OR allstar_pitchingScore IS NOT NULL
+            allstar_pitchingScore > 0 AND allstar_pitchingScore IS NOT NULL
         ORDER BY 
             allstar_pitchingScore DESC
         LIMIT :limit";
