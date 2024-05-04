@@ -55,10 +55,10 @@ function getAllStarPitchingSql()
 {
     return "
         SELECT 
-            AVG(avg_pitchingScore) AS overall_avg_pitchingScore
+            AVG(allstar_pitchingScore) AS avg_pitchingScore
         FROM (
             SELECT 
-                AVG(b.W + (b.IPouts / 3) + b.SV - b.ERA) AS avg_pitchingScore
+                AVG(b.W + (b.IPouts / 3) + b.SV - b.ERA) AS allstar_pitchingScore
             FROM 
                 People AS p
             JOIN 
@@ -71,6 +71,7 @@ function getAllStarPitchingSql()
                 p.playerID
         ) AS avg_pitchingScore";
 }
+
 
 function getAllStarOffensiveSql()
 {
